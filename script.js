@@ -427,11 +427,11 @@ function createQueue() {
   }
 
   function getFront() {
-    return queue.getHead()
+    return queue.getHead() ? queue.getHead() : undefined
   }
 
   function getBack() {
-    return queue.getTail()
+    return queue.getTail() ? queue.getTail() : undefined
   }
 
   function enQueue(data) {
