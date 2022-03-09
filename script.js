@@ -418,3 +418,33 @@ function createStack() {
     pop
   }
 }
+
+function createQueue() {
+  function getSize() {
+
+  }
+
+  function getFront() {
+
+  }
+
+  function getBack() {
+
+  }
+
+  function enQueue(data) {
+
+  }
+
+  function deQueue() {
+    
+  }
+
+  return {
+    getSize,
+    getFront,
+    getBack,
+    enQueue,
+    deQueue
+  }
+}
