@@ -43,14 +43,14 @@ function createLinkList() {
 
   // get size
   function getSize() {
-    if (head == null) return null
-    let currentIndex = 3
+    if (head == null) return 0
+    let amount = 1
     let currentItem = head
     while (currentItem.next) {
       currentItem = currentItem.next
-      ++currentIndex
+      ++amount
     }
-    return currentIndex
+    return amount
   }
 
   // find index by data
@@ -94,8 +94,7 @@ function createLinkList() {
   }
 
   // insert be position
-  function insertBeforePosition(index, data) {
-    if (head == null && index > 0) return -1
+  function insertBeforePosition(data, index) {
     let newNode = {
       data,
       next: null
@@ -206,3 +205,216 @@ function createLinkList() {
   }
 }
 
+function createDoubleLinkList() {
+  let head = null
+  let tail = null
+
+  function insertHead(data) {
+    const newNode = {
+      data,
+      prev: null,
+      next: null
+    }
+    let secondNode = null
+
+    if (head == null) {
+      head = newNode
+      tail = newNode
+      return
+    }
+    newNode.next = head
+    head.prev = newNode
+    secondNode = head
+    head = newNode
+  }
+
+  function insertTail(data) {
+    const newNode = {
+      data: data,
+      prev: null,
+      next: null
+    }
+    if (tail == null) {
+      tail = newNode
+      head = newNode
+      return
+    }
+    newNode.prev = tail
+    tail.next = newNode
+    tail = newNode
+  }
+
+  function insertBeforePosition(data, position) {
+    if (head == null && index > 0) return -1
+    let newNode = {
+      data,
+      next: null,
+      prev: null
+    }
+    //
+    if (head == null || tail == null) {
+      head == newNode
+      tail == newNode
+      return
+    }
+    if (position <= 0) {
+      newNode.next = head
+      head = newNode
+      return
+    }
+    const size = getSize()
+    if (position >= size) {
+      newNode.prev = tail
+      tail = newNode
+      return
+    }
+    let i = 0
+    let curr = head
+    while (curr.next != null && i < position) {
+      curr = curr.next
+      i++
+    }
+    let prev = curr.prev
+    prev.next = newNode
+    newNode.next = curr
+  }
+
+  function printList() {
+    if (head == null) {
+      console.log(null)
+      return
+    }
+    let curr = head
+    while (curr !== null) {
+      console.log(curr)
+      curr = curr.next
+    }
+  }
+
+  function getHead() {
+    return head
+  }
+
+  function getTail() {
+    return tail
+  }
+
+  function getSize() {
+    if (head == null) return 0
+    let amount = 1
+    let currentItem = head
+    while (currentItem.next) {
+      currentItem = currentItem.next
+      ++amount
+    }
+    return amount
+  }
+
+  function findIndexByData() {
+
+  }
+  
+  function findWidthCallBack() {
+
+  }
+
+  function removeHead() {
+    if (head == null) return null
+    let removed = head
+    head = head.next
+    head.prev = null
+    return removed
+  }
+
+  function removeTail() {
+    if (head == null) return null
+    let removed = tail
+    tail = tail.prev
+    tail.next = null
+    return removed
+  }
+
+  function removeAtPosition() {
+
+  }
+
+  function some() {
+
+  }
+
+  function every() {
+
+  }
+
+  return {
+    insertHead,
+    insertTail,
+    insertBeforePosition,
+    printList,
+    getHead,
+    getTail,
+    getSize,
+    findIndexByData,
+    findWidthCallBack,
+    removeHead,
+    removeTail,
+    removeAtPosition,
+    some,
+    every
+  }
+}
+
+
+// function createStack() {
+//   let stack = []
+
+//   function getTop() {
+//     return stack[stack.length - 1]
+//   }
+
+//   function getSize() {
+//     return stack.length()
+//   }
+
+//   function push() {
+//     stack.push()
+//   }
+
+//   function pop() {
+//     return stack.pop()
+//   }
+
+//   return {
+//     getTop,
+//     getSize,
+//     push,
+//     pop
+//   }
+// }
+
+function createStack() {
+  const stack = createLinkList()
+
+  function getTop() {
+    return stack.getHead()
+  }
+
+  function getSize() {
+    return stack.getSize()
+  }
+
+  function push(data) {
+    stack.insertHead(data)
+  }
+
+  function pop() {
+    return stack.removeHead()
+  }
+
+  return {
+    getTop,
+    getSize,
+    push,
+    pop
+  }
+}
