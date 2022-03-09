@@ -334,17 +334,17 @@ function createDoubleLinkList() {
     return removed
   }
 
-  // function removeAtPosition() {
+  function removeAtPosition() {
 
-  // }
+  }
 
-  // function some() {
+  function some() {
 
-  // }
+  }
 
-  // function every() {
+  function every() {
 
-  // }
+  }
 
   return {
     insertHead,
