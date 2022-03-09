@@ -420,24 +420,26 @@ function createStack() {
 }
 
 function createQueue() {
-  function getSize() {
+  const queue = createDoubleLinkList()
 
+  function getSize() {
+    return queue.getSize()
   }
 
   function getFront() {
-
+    return queue.getHead()
   }
 
   function getBack() {
-
+    return queue.getTail()
   }
 
   function enQueue(data) {
-
+    queue.insertTail(data)
   }
 
   function deQueue() {
-    
+  return queue.removeHead()
   }
 
   return {
@@ -448,3 +450,18 @@ function createQueue() {
     deQueue
   }
 }
+
+const queue = createQueue()
+queue.enQueue('Nguyen')
+queue.enQueue('Van1')
+queue.enQueue('Van2')
+queue.enQueue('Van3')
+queue.enQueue('Nam')
+console.log(queue.getBack())
+console.log(queue.getFront())
+console.log(queue.getSize())
+queue.deQueue()
+queue.deQueue()
+console.log('dequeued')
+console.log(queue.getBack())
+console.log(queue.getFront())
