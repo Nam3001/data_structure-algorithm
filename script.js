@@ -505,31 +505,81 @@ function binarySearch2(numberList, searchTerm) {
 }
 
 // sorting algorithm
+// swap function
+function swap(arr, first, second) {
+  const temp = arr[first]
+  arr[first] = arr[second]
+  arr[second] = temp
+}
 // 1. bubble sort (On^2)
 //bubble sort method 1
-function bubbleSort2(numList) {
-
+function bubbleSort1(numList) {
+  if (!Array.isArray(numList)) return 'parameter is not an array'
+  for (let i = 0; i < numList.length; i++) {
+    for (let j = i + 1; j < numList.length; j++) {
+      if (numList[j] < numList[i]) swap(numList, i, j)
+    }
+  }
 }
 
 // bubble sort method 2
 function bubbleSort2(numList) {
-
+  if (!Array.isArray(numList)) return 'not match'
+  for (let i = numList.length - 1; i > 0; i--) {
+    for (let j = 0; j <= i; j++) {
+      if (numList[j] > numList[j + 1])
+        swap(numList, j, j + 1)
+    }
+  }
 }
+
 // 2. quick sort (On^2)
 // quick sort method 1
-function partition2(numberList, startIndex, endIndex) {
-
+function partition1(numberList, startIndex, endIndex) {
+  // set pivot value is end number of list
+  const pivotVal = numberList[endIndex]
+  let index = startIndex // use to count
+  for (let i = index; i < endIndex; i++) {
+    // check numberList[i] letter than or equal pivot or not
+    if (numberList[i] <= pivotVal) {
+      // swap number letter than pivot value to before pivot value
+      swap(numberList, i, index)
+      index++ // ascend index
+    }
+  }
+  swap(numberList, index, endIndex)
+  return index
 }
 
 function quickSort1(numberList, startIndex, endIndex) {
+  if (startIndex >= endIndex) return
+  const midIndex = partition1(numberList, startIndex, endIndex)
 
+  quickSort1(numberList, startIndex, midIndex - 1)
+  quickSort1(numberList, midIndex + 1, endIndex)
 }
 
 // quick sort method 2
 function partition2(numberList, startIndex, endIndex) {
-
+  let i = startIndex
+  let j = endIndex
+  const mid = Math.floor(startIndex + (endIndex - startIndex) / 2)
+  while (i <= j) {
+    while (i < numberList[mid]) i++
+    while (j > numberList[mid]) j--
+    if (i < j) swap(numberList, i, j)
+    if (i <= j) {
+      i++
+      j--
+    }
+  }
+  return j
 }
 
-function quickSort1(numberList, startIndex, endIndex) {
+function quickSort2(numberList, startIndex, endIndex) {
+  if (startIndex >= endIndex) return
+  const midIndex = partition1(numberList, startIndex, endIndex)
 
+  quickSort1(numberList, startIndex, midIndex - 1)
+  quickSort1(numberList, midIndex, endIndex)
 }
