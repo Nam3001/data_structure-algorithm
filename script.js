@@ -1,5 +1,6 @@
 'use strict'
 
+// data structure
 function createLinkList() {
   let head = null
   //insert head
@@ -449,4 +450,86 @@ function createQueue() {
     enQueue,
     deQueue
   }
+}
+
+
+// algorithm
+
+// searching algorithm
+// 1. linear search (On)
+function linearSearch(numList, searchTerm) {
+  if (!Array.isArray(numList)) return -1
+  for(var i = 0; i < numList.length; i++) {
+    if (numList[i] === searchTerm) return i
+  }
+  return -1
+}
+
+// 2. binary search (Ologn)
+// binary search method 1 => recursive
+function binarySearch1(numList, startIndex, endIndex, searchTerm) {
+  if (!Array.isArray(numList)) return -1
+  if (startIndex > endIndex) return -1
+  const midIndex = Math.floor(startIndex + (endIndex - startIndex) / 2)
+  const mid = numList[midIndex]
+  if (searchTerm === mid) {
+    return midIndex
+  } else if (searchTerm < mid) {
+    return binarySearch1(numList, startIndex, midIndex - 1, searchTerm)
+  } else {
+    return binarySearch1(numList, midIndex + 1, endIndex, searchTerm)
+  }
+}
+
+// binary search method 2
+function binarySearch2(numberList, searchTerm) {
+  if (!Array.isArray(numberList)) return -1
+  let startIndex = 0
+  let endIndex = numberList.length - 1
+  let midIndex = Math.floor(startIndex + (endIndex - startIndex) / 2)
+  let mid = numberList[midIndex]
+  while(startIndex <= endIndex) {
+    if (searchTerm === mid) {
+      return midIndex
+    } else if (searchTerm < mid) {
+      endIndex = midIndex - 1
+      midIndex = Math.floor(startIndex + (endIndex - startIndex) / 2)
+      mid = numberList[midIndex]
+    } else {
+      startIndex = midIndex + 1
+      midIndex = Math.floor(startIndex + (endIndex - startIndex) / 2)
+      mid = numberList[midIndex]
+    }
+  }
+  return -1
+}
+
+// sorting algorithm
+// 1. bubble sort (On^2)
+//bubble sort method 1
+function bubbleSort2(numList) {
+
+}
+
+// bubble sort method 2
+function bubbleSort2(numList) {
+
+}
+// 2. quick sort (On^2)
+// quick sort method 1
+function partition2(numberList, startIndex, endIndex) {
+
+}
+
+function quickSort1(numberList, startIndex, endIndex) {
+
+}
+
+// quick sort method 2
+function partition2(numberList, startIndex, endIndex) {
+
+}
+
+function quickSort1(numberList, startIndex, endIndex) {
+
 }
