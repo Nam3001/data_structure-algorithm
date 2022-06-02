@@ -560,26 +560,28 @@ function quickSort1(numberList, startIndex, endIndex) {
 }
 
 // quick sort method 2
-function partition2(numberList, startIndex, endIndex) {
-  let i = startIndex
-  let j = endIndex
-  const mid = Math.floor(startIndex + (endIndex - startIndex) / 2)
+function partition2(arr, left, right) {
+	let i = left, j = right
+  const mid = left + Math.floor((right - left) / 2)
+  const pivot = arr[mid]
   while (i <= j) {
-    while (i < numberList[mid]) i++
-    while (j > numberList[mid]) j--
-    if (i < j) swap(numberList, i, j)
+  	while (arr[i] < pivot) i++
+    while (arr[j] > pivot) j--
+    if (i < j) swap(arr, i, j)
     if (i <= j) {
-      i++
+    	i++
       j--
     }
   }
-  return j
+  return i
 }
 
-function quickSort2(numberList, startIndex, endIndex) {
-  if (startIndex >= endIndex) return
-  const midIndex = partition1(numberList, startIndex, endIndex)
 
-  quickSort1(numberList, startIndex, midIndex - 1)
-  quickSort1(numberList, midIndex, endIndex)
+function quickSort2(arr, left = 0, right = arr.length - 1) {
+	if (left >= right) return
+  
+  const mid = partition2(arr, left, right)
+  quickSort2(arr, left, mid - 1)
+  quickSort2(arr, mid, right)
+  return arr
 }
