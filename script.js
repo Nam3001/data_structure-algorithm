@@ -67,7 +67,7 @@ function createLinkList() {
   }
 
   // find with callback
-  function findWidthCallBack(callback) {
+  function findWithCallBack(callback) {
     if (head == null) return undefined
     if (typeof callback !== 'function') return undefined
     if (callback.length <= 0) return undefined
@@ -195,7 +195,7 @@ function createLinkList() {
     getTail,
     getSize,
     findIndexByData,
-    findWidthCallBack,
+    findWithCallBack,
     insertTail,
     insertBeforePosition,
     removeHead,
